@@ -40,10 +40,9 @@ body.light-mode {
     color: #353535;
 }
 
-/* Titles */
 .title1, .title2 {
     font-family: Jersey25-Regular;
-    font-size: 10vw;
+    font-size: 10vw; /* Keep this to allow responsive sizing */
     text-align: justify;
     margin: 0;
     line-height: 0.9;
@@ -62,8 +61,8 @@ body.light-mode {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 40vw;
-    height: 40vw;
+    width: 40vw; /* Maintain the size for grid */
+    height: 40vw; /* Maintain the size for grid */
     transform: translate(-50%, -50%);
     z-index: 1;
 }
@@ -82,7 +81,7 @@ body.light-mode {
 }
 
 .verticalLine {
-    width: 10px;
+    width: 10px; /* Fixed size for vertical lines */
     height: 100%;
 }
 
@@ -95,7 +94,7 @@ body.light-mode {
 }
 
 .horizontalLine {
-    height: 10px;
+    height: 10px; /* Fixed size for horizontal lines */
     width: 100%;
 }
 
@@ -110,10 +109,10 @@ body.light-mode {
 /* Sun/Moon Icon Button */
 .themeToggle {
     position: absolute;
-    top: 15px;
-    right: 20px;
-    width: 75px;
-    height: 75px;
+    top: 15px; /* Maintain original position */
+    right: 20px; /* Maintain original position */
+    width: 75px; /* Fixed width for the icon */
+    height: 75px; /* Fixed height for the icon */
     background: none;
     border: none;
     cursor: pointer;
@@ -135,10 +134,10 @@ body.light-mode {
 /* X Logo in Background */
 .xLogo {
     position: absolute;
-    top: -9vw;
-    left: -7vw;
-    width: 25vw;
-    height: 25vw;
+    top: -9vw; /* Original positioning */
+    left: -7vw; /* Original positioning */
+    width: 25vw; /* Responsive width */
+    height: 25vw; /* Responsive height */
     background-image: url('../Assets/ph--x.png');
     background-size: contain;
     background-repeat: no-repeat;
@@ -150,10 +149,10 @@ body.light-mode {
 /* O Logo in Background */
 .oLogo {
     position: absolute;
-    bottom: 1vw;
-    right: -10vw;
-    width: 25vw;
-    height: 25vw;
+    bottom: 1vw; /* Original positioning */
+    right: -10vw; /* Original positioning */
+    width: 25vw; /* Responsive width */
+    height: 25vw; /* Responsive height */
     background-image: url('../Assets/healthicons--o.png');
     background-size: contain;
     background-repeat: no-repeat;
@@ -169,7 +168,7 @@ body.light-mode {
 /* Bouncing animation for X and O logos */
 @keyframes bounce {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
+    50% { transform: translateY(-20px); } /* Keep this value to replicate original bounce */
 }
 
 .bounce {
@@ -187,62 +186,177 @@ body.light-mode {
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .title1, .title2 {
-        font-size: 15vw;
+        font-size: 12vw; /* Responsive adjustment */
     }
     .xLogo, .oLogo {
-        width: 35vw;
-        height: 35vw;
+        width: 30vw; /* Responsive sizing */
+        height: 30vw; /* Responsive sizing */
     }
     .themeToggle {
-        width: 60px;
-        height: 60px;
+        width: 10vw; /* Adjusting for smaller screens */
+        height: 10vw; /* Adjusting for smaller screens */
     }
 }
 
 @media (max-width: 480px) {
     .title1, .title2 {
-        font-size: 20vw;
+        font-size: 18vw; /* Further responsive adjustment */
     }
     .xLogo, .oLogo {
-        width: 40vw;
-        height: 40vw;
+        width: 35vw; /* Responsive sizing */
+        height: 35vw; /* Responsive sizing */
     }
     .themeToggle {
-        width: 35px;
-        height: 35px;
+        width: 15vw; /* Responsive sizing */
+        height: 15vw; /* Responsive sizing */
     }
 }
-/* Existing styles... */
 
-.transitioning .title1,
-.transitioning .title2 {
-  transition: all 1s ease-in-out;
-  transform: scale(0.5) translate(-100%, -100%);
-  opacity: 0;
+/* Floating Box Styling */
+.floatingBox {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px; /* Original padding */
+    background-color: #444444; /* Dark background for contrast */
+    border-radius: 20px; /* Original border radius */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25); /* Soft shadow for floating effect */
+    width: 360px; /* Fixed width */
+    max-width: 90vw; /* Responsive sizing */
+    text-align: center;
+    z-index: 2;
+    font-family: 'Jersey25-Regular';
+    color: #ffffff; /* White text for readability */
 }
 
-.transitioning .xLogo {
-  transition: all 1s ease-in-out;
-  transform: translate(-100%, 100%);
+.light-mode .floatingBox {
+    opacity: 85%;
 }
 
-.transitioning .oLogo {
-  transition: all 1s ease-in-out;
-  transform: translate(100%, -100%);
+.floatingBox h3 {
+    font-size: 2rem; /* Keep original size */
+    margin-bottom: 20px; /* Maintain original margin */
+    font-weight: bold;
+    color: #ffffff; /* Keep the title text white */
 }
 
-.rounded-rectangle {
-  position: fixed;
-  bottom: -100%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80%;
-  height: 80%;
-  background-color: #f0f0f0;
-  border-radius: 20px;
-  transition: bottom 1s ease-in-out;
+/* Input Labels */
+.floatingBox label {
+    display: block;
+    margin: 20px 0 10px; /* Space between label and inputs */
+    color: #d9d9d9; /* Light text color for labels */
+    font-size: 1.5rem; /* Original size */
+    font-family: 'Jersey25-Regular';
+    text-align: left; /* Left-align the labels */
 }
 
-.rounded-rectangle.show {
-  bottom: 10%;
+/* Input and Select Styling */
+.floatingBox input,
+.floatingBox select {
+    width: 100%; /* Full width */
+    padding: 10px 15px; /* Original padding */
+    margin-top: 5px; /* Original margin */
+    border-radius: 10px; /* Original radius */
+    border: 1px solid #d9d9d9; /* Original border */
+    font-size: 1.5rem; /* Original size */
+    box-sizing: border-box;
+    font-family: 'Jersey25-Regular';
+    background-color: #f0f0f0; /* Lighter background for inputs */
+    color: #333333; /* Dark text for inputs */
+    transition: border-color 0.3s ease;
+}
+
+/* Input Focus and Hover Effects */
+.floatingBox input:focus,
+.floatingBox select:focus {
+    outline: none;
+    border-color: #ff7f50; /* Coral focus color for inputs */
+}
+
+.floatingBox input:hover,
+.floatingBox select:hover {
+    border-color: #cccccc;
+}
+
+/* Theme Toggle Button */
+.themeToggle {
+    position: absolute;
+    top: 10px; /* Original position */
+    right: 10px; /* Original position */
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.themeToggle img {
+    width: 40px; /* Original size */
+    height: 40px; /* Original size */
+    filter: none; 
+}
+
+/* Player Names Input */
+.floatingBox input[type="text"] {
+    background-color: #f0f0f0; /* Original color */
+    border: 1px solid #d9d9d9; /* Original border */
+    padding: 10px; /* Original padding */
+    font-size: 1.5rem; /* Original size */
+    border-radius: 10px; /* Original radius */
+    margin-top: 5px; /* Original margin */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .floatingBox {
+        padding: 20px; /* Adjust for smaller screens */
+        width: 80vw; /* Responsive width */
+    }
+
+    .floatingBox h3 {
+        font-size: 1.8rem; /* Slightly smaller for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .floatingBox {
+        width: 90vw; /* Responsive width */
+    }
+
+    .floatingBox h3 {
+        font-size: 1.6rem; /* Further adjustment for small screens */
+    }
+}
+
+/* Start Game Button Styling - Positioned Separately */
+.startGameButton {
+    background-color: #ff7043; /* Initial coral color */
+    color: white;
+    padding: 10px 20px; /* Original padding */
+    font-size: 1.5rem; /* Original font size */
+    border: none;
+    border-radius: 5px; /* Original radius */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-family: Jersey25-Regular;
+    z-index: 1;
+}
+
+/* Hover and Active Effects */
+.startGameButton:hover {
+    background-color: #ff5722; /* Darker coral on hover */
+    transform: scale(1.05); /* Slight scale-up on hover */
+}
+
+.startGameButton:active {
+    transform: scale(0.98); /* Pressed-down effect */
+}
+
+.floatingBox {
+    margin-bottom: 2vw; /* Responsive margin */
+}
+
+.Setting_Title {
+    font-size: 2rem; /* Fixed size for consistency */
+    padding-bottom: 0; /* Reset padding */
+    padding-top: 0; /* Reset padding */
 }
