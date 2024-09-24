@@ -8,7 +8,7 @@ body {
     padding: 0;
     font-family: Jersey25-Regular;
     position: relative;
-    transition: background-color 0.3s ease;
+    transition: background-color 1s ease;
 }
 
 body.dark-mode {
@@ -40,29 +40,41 @@ body.light-mode {
     color: #353535;
 }
 
+.text-center {
+    position: relative;
+    z-index: 5;
+    transition: all 1s ease;
+}
+
+.title-fixed {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    transform: none !important;
+}
+
 .title1, .title2 {
     font-family: Jersey25-Regular;
-    font-size: 10vw; /* Keep this to allow responsive sizing */
+    font-size: 10vw;
     text-align: justify;
     margin: 0;
     line-height: 0.9;
     position: relative;
     z-index: 3;
     transform: translateX(-10%);
-    transition: transform 0.1s ease-out;
+    transition: transform 1s ease-out;
 }
 
 .light-mode .title1, .light-mode .title2 {
     color: #3c3c3c;
 }
 
-/* Tic-Tac-Toe Grid */
 .lineGrid {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 40vw; /* Maintain the size for grid */
-    height: 40vw; /* Maintain the size for grid */
+    width: 40vw;
+    height: 40vw;
     transform: translate(-50%, -50%);
     z-index: 1;
 }
@@ -81,7 +93,7 @@ body.light-mode {
 }
 
 .verticalLine {
-    width: 10px; /* Fixed size for vertical lines */
+    width: 10px;
     height: 100%;
 }
 
@@ -94,7 +106,7 @@ body.light-mode {
 }
 
 .horizontalLine {
-    height: 10px; /* Fixed size for horizontal lines */
+    height: 10px;
     width: 100%;
 }
 
@@ -106,13 +118,12 @@ body.light-mode {
     top: 66%;
 }
 
-/* Sun/Moon Icon Button */
 .themeToggle {
     position: absolute;
-    top: 15px; /* Maintain original position */
-    right: 20px; /* Maintain original position */
-    width: 75px; /* Fixed width for the icon */
-    height: 75px; /* Fixed height for the icon */
+    top: 15px;
+    right: 20px;
+    width: 75px;
+    height: 75px;
     background: none;
     border: none;
     cursor: pointer;
@@ -131,44 +142,41 @@ body.light-mode {
     object-fit: contain;
 }
 
-/* X Logo in Background */
 .xLogo {
     position: absolute;
-    top: -9vw; /* Original positioning */
-    left: -7vw; /* Original positioning */
-    width: 25vw; /* Responsive width */
-    height: 25vw; /* Responsive height */
+    top: -9vw;
+    left: -7vw;
+    width: 25vw;
+    height: 25vw;
     background-image: url('../Assets/ph--x.png');
     background-size: contain;
     background-repeat: no-repeat;
     z-index: 2;
     opacity: 1;
-    transition: opacity 0.3s ease;
+    transition: all 1s ease;
 }
 
-/* O Logo in Background */
 .oLogo {
     position: absolute;
-    bottom: 1vw; /* Original positioning */
-    right: -10vw; /* Original positioning */
-    width: 25vw; /* Responsive width */
-    height: 25vw; /* Responsive height */
+    bottom: 1vw;
+    right: -10vw;
+    width: 25vw;
+    height: 25vw;
     background-image: url('../Assets/healthicons--o.png');
     background-size: contain;
     background-repeat: no-repeat;
     z-index: 2;
     opacity: 1;
-    transition: opacity 0.3s ease;
+    transition: all 1s ease;
 }
 
 .light-mode .xLogo, .light-mode .oLogo {
     opacity: 0.05;
 }
 
-/* Bouncing animation for X and O logos */
 @keyframes bounce {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); } /* Keep this value to replicate original bounce */
+    50% { transform: translateY(-20px); }
 }
 
 .bounce {
@@ -183,180 +191,30 @@ body.light-mode {
     animation-delay: 1s;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
     .title1, .title2 {
-        font-size: 12vw; /* Responsive adjustment */
+        font-size: 12vw;
     }
     .xLogo, .oLogo {
-        width: 30vw; /* Responsive sizing */
-        height: 30vw; /* Responsive sizing */
+        width: 30vw;
+        height: 30vw;
     }
     .themeToggle {
-        width: 10vw; /* Adjusting for smaller screens */
-        height: 10vw; /* Adjusting for smaller screens */
+        width: 10vw;
+        height: 10vw;
     }
 }
 
 @media (max-width: 480px) {
     .title1, .title2 {
-        font-size: 18vw; /* Further responsive adjustment */
+        font-size: 18vw;
     }
     .xLogo, .oLogo {
-        width: 35vw; /* Responsive sizing */
-        height: 35vw; /* Responsive sizing */
+        width: 35vw;
+        height: 35vw;
     }
     .themeToggle {
-        width: 15vw; /* Responsive sizing */
-        height: 15vw; /* Responsive sizing */
+        width: 15vw;
+        height: 15vw;
     }
-}
-
-/* Floating Box Styling */
-.floatingBox {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 30px; /* Original padding */
-    background-color: #444444; /* Dark background for contrast */
-    border-radius: 20px; /* Original border radius */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25); /* Soft shadow for floating effect */
-    width: 360px; /* Fixed width */
-    max-width: 90vw; /* Responsive sizing */
-    text-align: center;
-    z-index: 2;
-    font-family: 'Jersey25-Regular';
-    color: #ffffff; /* White text for readability */
-}
-
-.light-mode .floatingBox {
-    opacity: 85%;
-}
-
-.floatingBox h3 {
-    font-size: 2rem; /* Keep original size */
-    margin-bottom: 20px; /* Maintain original margin */
-    font-weight: bold;
-    color: #ffffff; /* Keep the title text white */
-}
-
-/* Input Labels */
-.floatingBox label {
-    display: block;
-    margin: 20px 0 10px; /* Space between label and inputs */
-    color: #d9d9d9; /* Light text color for labels */
-    font-size: 1.5rem; /* Original size */
-    font-family: 'Jersey25-Regular';
-    text-align: left; /* Left-align the labels */
-}
-
-/* Input and Select Styling */
-.floatingBox input,
-.floatingBox select {
-    width: 100%; /* Full width */
-    padding: 10px 15px; /* Original padding */
-    margin-top: 5px; /* Original margin */
-    border-radius: 10px; /* Original radius */
-    border: 1px solid #d9d9d9; /* Original border */
-    font-size: 1.5rem; /* Original size */
-    box-sizing: border-box;
-    font-family: 'Jersey25-Regular';
-    background-color: #f0f0f0; /* Lighter background for inputs */
-    color: #333333; /* Dark text for inputs */
-    transition: border-color 0.3s ease;
-}
-
-/* Input Focus and Hover Effects */
-.floatingBox input:focus,
-.floatingBox select:focus {
-    outline: none;
-    border-color: #ff7f50; /* Coral focus color for inputs */
-}
-
-.floatingBox input:hover,
-.floatingBox select:hover {
-    border-color: #cccccc;
-}
-
-/* Theme Toggle Button */
-.themeToggle {
-    position: absolute;
-    top: 10px; /* Original position */
-    right: 10px; /* Original position */
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-.themeToggle img {
-    width: 40px; /* Original size */
-    height: 40px; /* Original size */
-    filter: none; 
-}
-
-/* Player Names Input */
-.floatingBox input[type="text"] {
-    background-color: #f0f0f0; /* Original color */
-    border: 1px solid #d9d9d9; /* Original border */
-    padding: 10px; /* Original padding */
-    font-size: 1.5rem; /* Original size */
-    border-radius: 10px; /* Original radius */
-    margin-top: 5px; /* Original margin */
-}
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    .floatingBox {
-        padding: 20px; /* Adjust for smaller screens */
-        width: 80vw; /* Responsive width */
-    }
-
-    .floatingBox h3 {
-        font-size: 1.8rem; /* Slightly smaller for smaller screens */
-    }
-}
-
-@media (max-width: 480px) {
-    .floatingBox {
-        width: 90vw; /* Responsive width */
-    }
-
-    .floatingBox h3 {
-        font-size: 1.6rem; /* Further adjustment for small screens */
-    }
-}
-
-/* Start Game Button Styling - Positioned Separately */
-.startGameButton {
-    background-color: #ff7043; /* Initial coral color */
-    color: white;
-    padding: 10px 20px; /* Original padding */
-    font-size: 1.5rem; /* Original font size */
-    border: none;
-    border-radius: 5px; /* Original radius */
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    font-family: Jersey25-Regular;
-    z-index: 1;
-}
-
-/* Hover and Active Effects */
-.startGameButton:hover {
-    background-color: #ff5722; /* Darker coral on hover */
-    transform: scale(1.05); /* Slight scale-up on hover */
-}
-
-.startGameButton:active {
-    transform: scale(0.98); /* Pressed-down effect */
-}
-
-.floatingBox {
-    margin-bottom: 2vw; /* Responsive margin */
-}
-
-.Setting_Title {
-    font-size: 2rem; /* Fixed size for consistency */
-    padding-bottom: 0; /* Reset padding */
-    padding-top: 0; /* Reset padding */
 }

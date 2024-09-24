@@ -1,0 +1,172 @@
+.tic-tac-toe {
+    position: relative;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.board {
+    display: grid;
+    grid-gap: none;
+    width: 600px;
+    height: 600px;
+    margin: 20px auto;
+}
+body.dark-mode {
+    background-color: #353535;
+}
+
+body.light-mode {
+    background-color: #d9d9d9;
+}
+
+.cell {
+    background-color: #353535; /* Default background for dark mode */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-left: none;
+    border-top: none;
+    border-right: 6px solid #fff; /* Default border color */
+    border-bottom: 6px solid #fff; /* Default border color */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.cell img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.cell:hover {
+    background-color: #454545; /* Dark mode hover */
+}
+
+.cell:disabled {
+    cursor: not-allowed;
+    background-color: #353535;
+}
+
+.cell.last-column {
+    border-right: none;
+}
+
+.cell.last-row {
+    border-bottom: none;
+}
+
+.winning-image {
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.1);
+        opacity: 0.7;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+}
+
+.winner-banner {
+    position: fixed;
+    top: 15vw;
+    left: 0;
+    width: 100vw;
+    height: 50vh;
+    background-color: #3c3c3c; /* Dark mode background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: slideIn 2s ease-out;
+    opacity: 1;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+.banner-content {
+    text-align: center;
+    color: #d9d9d9;
+    font-size: 2.5rem;
+}
+
+.reset-button {
+    background-color: #ff5722;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 0.8em;
+    font-family: Jersey25-Regular;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+.reset-button:hover {
+    background-color: #e64a19;
+}
+
+/* Light Mode Styles */
+body.light-mode .cell {
+    background-color: #d9d9d9; /* Light mode background */
+    border-right: 6px solid #353535; /* Light mode border color */
+    border-bottom: 6px solid #353535; /* Light mode border color */
+}
+
+body.light-mode .cell:hover {
+    background-color: #f0f0f0; /* Light mode hover */
+}
+
+body.light-mode .winner-banner {
+    background-color: #d9d9d9; /* Light mode banner */
+}
+
+body.light-mode .banner-content {
+    color: #353535; /* Light mode text color */
+}
+
+/* Reset button light mode */
+body.light-mode .reset-button {
+    background-color: #ff5722;
+    color: #d9d9d9;
+}
+
+/* Ensure appropriate transitions for body backgrounds */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Jersey25-Regular;
+    position: relative;
+    transition: background-color 1s ease;
+}
+
+body.dark-mode {
+    background-color: #353535;
+}
+
+body.light-mode {
+    background-color: #d9d9d9;
+}
