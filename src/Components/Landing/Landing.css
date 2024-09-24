@@ -1,0 +1,248 @@
+@font-face {
+    font-family: Jersey25-Regular;
+    src: url(../../../public/Jersey25-Regular.ttf);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Jersey25-Regular;
+    position: relative;
+    transition: background-color 0.3s ease;
+}
+
+body.dark-mode {
+    background-color: #353535;
+}
+
+body.light-mode {
+    background-color: #d9d9d9;
+}
+
+.landingPage {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.landingPage.dark-mode {
+    background-color: #353535;
+    color: #d9d9d9;
+}
+
+.landingPage.light-mode {
+    background-color: #f0f0f0;
+    color: #353535;
+}
+
+/* Titles */
+.title1, .title2 {
+    font-family: Jersey25-Regular;
+    font-size: 10vw;
+    text-align: justify;
+    margin: 0;
+    line-height: 0.9;
+    position: relative;
+    z-index: 3;
+    transform: translateX(-10%);
+    transition: transform 0.1s ease-out;
+}
+
+.light-mode .title1, .light-mode .title2 {
+    color: #3c3c3c;
+}
+
+/* Tic-Tac-Toe Grid */
+.lineGrid {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40vw;
+    height: 40vw;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+.verticalLine, .horizontalLine {
+    position: absolute;
+    transition: background-color 0.3s ease;
+}
+
+.dark-mode .verticalLine, .dark-mode .horizontalLine {
+    background-color: #3c3c3c;
+}
+
+.light-mode .verticalLine, .light-mode .horizontalLine {
+    background-color: #d0d0d0;
+}
+
+.verticalLine {
+    width: 10px;
+    height: 100%;
+}
+
+.vertical1 {
+    left: 33%;
+}
+
+.vertical2 {
+    left: 66%;
+}
+
+.horizontalLine {
+    height: 10px;
+    width: 100%;
+}
+
+.horizontal1 {
+    top: 33%;
+}
+
+.horizontal2 {
+    top: 66%;
+}
+
+/* Sun/Moon Icon Button */
+.themeToggle {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    width: 75px;
+    height: 75px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 4;
+    padding: 0;
+    transition: transform 0.3s ease;
+}
+
+.themeToggle:hover {
+    transform: scale(1.1);
+}
+
+.themeToggle img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* X Logo in Background */
+.xLogo {
+    position: absolute;
+    top: -9vw;
+    left: -7vw;
+    width: 25vw;
+    height: 25vw;
+    background-image: url('../Assets/ph--x.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 2;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+/* O Logo in Background */
+.oLogo {
+    position: absolute;
+    bottom: 1vw;
+    right: -10vw;
+    width: 25vw;
+    height: 25vw;
+    background-image: url('../Assets/healthicons--o.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 2;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.light-mode .xLogo, .light-mode .oLogo {
+    opacity: 0.05;
+}
+
+/* Bouncing animation for X and O logos */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+.bounce {
+    animation: bounce 3s ease-in-out infinite;
+}
+
+.xLogo {
+    animation-delay: 0.5s;
+}
+
+.oLogo {
+    animation-delay: 1s;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .title1, .title2 {
+        font-size: 15vw;
+    }
+    .xLogo, .oLogo {
+        width: 35vw;
+        height: 35vw;
+    }
+    .themeToggle {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+@media (max-width: 480px) {
+    .title1, .title2 {
+        font-size: 20vw;
+    }
+    .xLogo, .oLogo {
+        width: 40vw;
+        height: 40vw;
+    }
+    .themeToggle {
+        width: 35px;
+        height: 35px;
+    }
+}
+/* Existing styles... */
+
+.transitioning .title1,
+.transitioning .title2 {
+  transition: all 1s ease-in-out;
+  transform: scale(0.5) translate(-100%, -100%);
+  opacity: 0;
+}
+
+.transitioning .xLogo {
+  transition: all 1s ease-in-out;
+  transform: translate(-100%, 100%);
+}
+
+.transitioning .oLogo {
+  transition: all 1s ease-in-out;
+  transform: translate(100%, -100%);
+}
+
+.rounded-rectangle {
+  position: fixed;
+  bottom: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 80%;
+  background-color: #f0f0f0;
+  border-radius: 20px;
+  transition: bottom 1s ease-in-out;
+}
+
+.rounded-rectangle.show {
+  bottom: 10%;
+}
