@@ -190,8 +190,9 @@ body.light-mode {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20px auto;
+    margin: 40px;
     font-size: 16px;
+    width: 100%;
   }
   
   .player-toggle {
@@ -200,7 +201,7 @@ body.light-mode {
     height: 50px;
     background-color: #454545;
     border-radius: 25px;
-    margin: 0 15px;
+    margin: 0 20px;
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
@@ -263,6 +264,7 @@ body.light-mode {
     font-size: 20px;
     font-weight: bold;
     transition: color 0.3s ease;
+    text-align: center;
   }
   
   .player-name.active {
