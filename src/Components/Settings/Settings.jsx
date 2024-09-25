@@ -1,54 +1,43 @@
 import React, { useState, useEffect } from 'react';
-import './Settings.css'; // Make sure this CSS file is in the same directory
+import './Settings.css';
 
 const Settings = ({ onStartGame }) => {
-  const [settings, setSettings] = useState({
-    gridSize: 3,
-    maxStreak: 3,
-    player1: 'Player 1',
-    player2: 'Player 2',
-  });
+  const [gridSize, setGridSize] = useState(3);
+  const [maxStreak, setMaxStreak] = useState(3);
+  const [player1, setPlayer1] = useState('Player_1');
+  const [player2, setPlayer2] = useState('Player_2');
   const [isMounted, setIsMounted] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState(''); 
 
   useEffect(() => {
     setIsMounted(true);
-    return () => setIsMounted(false);
   }, []);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setSettings(prev => {
-      const newSettings = { ...prev, [name]: value };
-      if (name === 'gridSize') {
-        newSettings.maxStreak = Math.min(newSettings.maxStreak, Number(value));
-      }
-      return newSettings;
-    });
-  };
-
   const handleStartGame = () => {
-    if (settings.maxStreak < 3 || settings.maxStreak > settings.gridSize) {
-      setErrorMessage(`Win Streak must be between 3 and ${settings.gridSize}.`);
+    if (maxStreak < 3 || maxStreak > gridSize) {
+      setErrorMessage(`Win Streak must be between 3 and ${gridSize}.`);
       return;
     }
-    setErrorMessage('');
-    onStartGame(settings);
+    setErrorMessage(''); 
+    onStartGame({ gridSize, maxStreak, player1, player2 });
   };
 
   return (
     <div className={`settingsBox ${isMounted ? 'show' : 'hide'}`}>
       <p className='settingTitle'>Menu</p>
-     
       <label>
         Grid Size:
         <select
-          name="gridSize"
-          value={settings.gridSize}
-          onChange={handleChange}
+          value={gridSize}
+          onChange={(e) => {
+            setGridSize(Number(e.target.value));
+            if (maxStreak > Number(e.target.value)) {
+              setMaxStreak(Number(e.target.value));
+            }
+          }}
         >
-          {Array.from({ length: 8 }, (_, i) => i + 3).map((size) => (
-            <option key={size} value={size}>{size}x{size}</option>
+          {Array.from({ length: 8 }, (_, i) => 3 + i).map((n) => (
+            <option key={n} value={n}>{n}x{n}</option>
           ))}
         </select>
       </label>
@@ -57,37 +46,36 @@ const Settings = ({ onStartGame }) => {
         Win Streak:
         <input
           type="number"
-          name="maxStreak"
-          value={settings.maxStreak}
-          onChange={handleChange}
+          value={maxStreak}
           min="3"
-          max={settings.gridSize}
+          max={gridSize}
+          onChange={(e) => setMaxStreak(Number(e.target.value))}
           className="numberSelector"
         />
       </label>
 
-      {errorMessage && <p className="errorMessage">{errorMessage}</p>}
+      {errorMessage && <p className="errorMessage">{errorMessage}</p>} 
 
-      <label>
-        Player 1 [X]:
-        <input
-          type="text"
-          name="player1"
-          value={settings.player1}
-          onChange={handleChange}
-        />
-      </label>
-
-      <label>
-        Player 2 [O]:
-        <input
-          type="text"
-          name="player2"
-          value={settings.player2}
-          onChange={handleChange}
-        />
-      </label>
-
+      <div>
+        <label>
+          Player 1 [X]:
+          <input
+            type="text"
+            value={player1}
+            onChange={(e) => setPlayer1(e.target.value)}
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+          Player 2 [O]:
+          <input
+            type="text"
+            value={player2}
+            onChange={(e) => setPlayer2(e.target.value)}
+          />
+        </label>
+      </div>
       <button className="startGameButton" onClick={handleStartGame}>
         Start Game
       </button>
