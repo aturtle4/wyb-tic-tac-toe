@@ -5,6 +5,7 @@
 }
 
 .board-container {
+    padding-top: 20px;
     display: grid;
     grid-template-columns: 1fr auto; 
     gap: 20px; 
@@ -19,6 +20,7 @@
     height: 600px;
     margin-right: none;
     z-index: 90;
+    align-self:center ;
 
 }
 @media (max-width: 768px) {
@@ -208,6 +210,7 @@ body.light-mode {
     margin: 40px;
     font-size: 16px;
     width: 100%;
+    align-self: center;
   }
   
   .player-toggle {

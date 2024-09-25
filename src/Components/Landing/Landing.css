@@ -251,4 +251,22 @@ body.light-mode {
   .menuIconButton:disabled {
     cursor: not-allowed;
   }
-  
+  .startMessage {
+    animation: fadeIn 0.5s ease-in-out;
+    font-size: 2.5vw; 
+    margin-top: 4vh;  
+    text-align: center;
+    z-index: 50;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

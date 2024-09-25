@@ -22,6 +22,7 @@ const Landing = () => {
     player2: 'Player_2',
   });
   const [resetSignal, setResetSignal] = useState(0); // State to trigger reset
+  const [showStartMessage, setShowStartMessage] = useState(true); // New state for start message
 
   useEffect(() => {
     document.body.classList.toggle('dark-mode', isDarkMode);
@@ -45,8 +46,7 @@ const Landing = () => {
   };
 
   const reloadPage = () => {
-    if (isClicked){window.location.reload();}
-    
+    if (isClicked) { window.location.reload(); }
   };
 
   const handleClick = (e) => {
@@ -59,6 +59,7 @@ const Landing = () => {
 
     if (!isClicked) {
       setIsClicked(true);
+      setShowStartMessage(false); // Hide the start message after the first click
       setShowSettings(true);
     }
     setIsAnimationActive(false);
@@ -89,8 +90,6 @@ const Landing = () => {
           <div className="horizontalLine horizontal2"></div>
         </div>
       )}
-
-      
 
       <div
         className={`xLogo bounce ${isClicked ? 'move-x' : ''}`}
@@ -135,8 +134,7 @@ const Landing = () => {
         )}
       </button>
 
-      <div className="text-center"
-      onClick={reloadPage}>
+      <div className="text-center" onClick={reloadPage}>
         <h1
           className={`title1 ${isClicked ? 'move-title1' : ''}`}
           style={{
@@ -167,8 +165,14 @@ const Landing = () => {
         >
           TOE<span style={{ color: isDarkMode ? '#ff7043' : '#ff5722' }}>.</span>
         </h1>
+        
+        {/* Start Message */}
+        {showStartMessage && (
+          <h2 className="startMessage">
+            Press on Screen to Start
+          </h2>
+        )}
       </div>
-      
 
       {showSettings && <Settings onStartGame={startGame} />}
 
