@@ -42,9 +42,11 @@ body.light-mode {
 
 .text-center {
     position: relative;
-    z-index: 5;
+    z-index: 250;
     transition: all 1s ease;
+    cursor: pointer;
 }
+
 
 .title-fixed {
     position: absolute;
@@ -170,6 +172,7 @@ body.light-mode {
     transition: all 1s ease;
 }
 
+
 .light-mode .xLogo, .light-mode .oLogo {
     opacity: 0.05;
 }
@@ -218,3 +221,34 @@ body.light-mode {
         height: 15vw;
     }
 }
+
+.themeToggle, .menuIconButton {
+    position: absolute;
+    top: 10px;
+    z-index: 1000;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    transition: transform 0.3s ease;
+  }
+  
+  .themeToggle img, .menuIconButton img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  
+  .themeToggle {
+    right: 80px; /* Positioning the theme toggle */
+  }
+  
+  .menuIconButton {
+    right: 20px; /* Positioning the menu button to the right of the theme toggle */
+  }
+  
+  .menuIconButton:disabled {
+    cursor: not-allowed;
+  }
+  

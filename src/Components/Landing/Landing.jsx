@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './Landing.css';
 import sunIcon from '../Assets/pixelarticons--sun.png';
 import moonIcon from '../Assets/pixelarticons--moon.png';
+import menuLightIcon from '../Assets/nimbus--menu-light.png';  // Light mode icon
+import menuDarkIcon from '../Assets/nimbus--menu.png';    // Dark mode icon
 import TicTacToe from '../TicTacToe/TicTacToe';
 import Settings from '../Settings/Settings';
 
@@ -12,12 +14,14 @@ const Landing = () => {
   const [isAnimationActive, setIsAnimationActive] = useState(true);
   const [gameStarted, setGameStarted] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
+  const [isMenuActive, setIsMenuActive] = useState(false); // Menu active state
   const [gameSettings, setGameSettings] = useState({
     gridSize: 3,
     maxStreak: 3,
     player1: 'Player_1',
     player2: 'Player_2',
   });
+  const [resetSignal, setResetSignal] = useState(0); // State to trigger reset
 
   useEffect(() => {
     document.body.classList.toggle('dark-mode', isDarkMode);
@@ -40,6 +44,11 @@ const Landing = () => {
     setIsDarkMode(!isDarkMode);
   };
 
+  const reloadPage = () => {
+    if (isClicked){window.location.reload();}
+    
+  };
+
   const handleClick = () => {
     if (!isClicked) {
       setIsClicked(true);
@@ -48,10 +57,17 @@ const Landing = () => {
     setIsAnimationActive(false);
   };
 
+  const toggleMenu = () => {
+    setIsMenuActive(!isMenuActive);
+    setShowSettings(!isMenuActive); // Show or hide the settings when the menu is toggled
+  };
+
   const startGame = (settings) => {
     setGameSettings(settings);
     setShowSettings(false);
     setGameStarted(true);
+    setIsMenuActive(false); // Close menu when the game starts
+    setResetSignal(prev => prev + 1); // Trigger reset signal
   };
 
   return (
@@ -89,6 +105,7 @@ const Landing = () => {
         }}
       ></div>
 
+      {/* Theme Toggle Button */}
       <button className="themeToggle" onClick={toggleDarkMode}>
         {isDarkMode ? (
           <img src={sunIcon} alt="Switch to Light Mode" />
@@ -97,14 +114,32 @@ const Landing = () => {
         )}
       </button>
 
-      <div className="text-center">
+      {/* Menu Button Icon - Changes based on Dark/Light Mode */}
+      <button
+        className="menuIconButton"
+        onClick={toggleMenu}
+        disabled={isMenuActive} 
+      >
+        {isDarkMode ? (
+          <img src={menuDarkIcon} alt="Menu in Dark Mode" />
+        ) : (
+          <img src={menuLightIcon} alt="Menu in Light Mode" />
+        )}
+      </button>
+
+      <div className="text-center"
+      onClick={reloadPage}>
         <h1
           className={`title1 ${isClicked ? 'move-title1' : ''}`}
           style={{
             fontSize: isClicked ? '3vw' : '10vw',
+            position: isClicked ? 'fixed' : 'static',
+            top: isClicked ? '1rem' : 'auto',
+            left: isClicked ? '1.5rem' : 'auto',
             transform: isAnimationActive
               ? `translate(${(mousePosition.x - window.innerWidth / 2) / 50}px, ${(mousePosition.y - window.innerHeight / 2) / 50}px)`
-              : 'translate(-480%, -815%)',
+              : 'translate(0,0)',
+            textAlign: isClicked ? 'left' : 'center',
           }}
         >
           TIC TAC
@@ -113,9 +148,13 @@ const Landing = () => {
           className={`title2 ${isClicked ? 'move-title2' : ''}`}
           style={{
             fontSize: isClicked ? '3vw' : '10vw',
+            position: isClicked ? 'fixed' : 'static',
+            top: isClicked ? '4rem' : 'auto',
+            left: isClicked ? '1.5rem' : 'auto',
             transform: isAnimationActive
               ? `translate(${(mousePosition.x - window.innerWidth / 2) / 30}px, ${(mousePosition.y - window.innerHeight / 2) / 30}px)`
-              : 'translate(-480%, -815%)',
+              : 'translate(0, 0)',
+            textAlign: 'left',
           }}
         >
           TOE<span style={{ color: isDarkMode ? '#ff7043' : '#ff5722' }}>.</span>
@@ -130,6 +169,8 @@ const Landing = () => {
           maxStreak={gameSettings.maxStreak}
           player1={gameSettings.player1}
           player2={gameSettings.player2}
+          isDarkMode={isDarkMode}
+          resetSignal={resetSignal} // Pass reset signal to TicTacToe
         />
       )}
     </div>

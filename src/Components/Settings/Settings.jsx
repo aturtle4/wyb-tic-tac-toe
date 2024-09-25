@@ -6,7 +6,8 @@ const Settings = ({ onStartGame }) => {
   const [maxStreak, setMaxStreak] = useState(3);
   const [player1, setPlayer1] = useState('Player_1');
   const [player2, setPlayer2] = useState('Player_2');
-  const [isMounted, setIsMounted] = useState(false); // State for controlling the floating effect
+  const [isMounted, setIsMounted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(''); // State for error messages
 
   useEffect(() => {
     // Trigger the animation when the component mounts
@@ -14,6 +15,12 @@ const Settings = ({ onStartGame }) => {
   }, []);
 
   const handleStartGame = () => {
+    // Validation: Check if maxStreak is valid
+    if (maxStreak < 3 || maxStreak > gridSize) {
+      setErrorMessage(`Win Streak must be between 3 and ${gridSize}.`);
+      return; // Prevent starting the game
+    }
+    setErrorMessage(''); // Clear error message if validation passes
     onStartGame({ gridSize, maxStreak, player1, player2 });
   };
 
@@ -24,7 +31,13 @@ const Settings = ({ onStartGame }) => {
         Grid Size:
         <select
           value={gridSize}
-          onChange={(e) => setGridSize(Number(e.target.value))}
+          onChange={(e) => {
+            setGridSize(Number(e.target.value));
+            // Reset maxStreak if it exceeds new gridSize
+            if (maxStreak > Number(e.target.value)) {
+              setMaxStreak(Number(e.target.value));
+            }
+          }}
         >
           {Array.from({ length: 8 }, (_, i) => 3 + i).map((n) => (
             <option key={n} value={n}>{n}x{n}</option>
@@ -40,8 +53,11 @@ const Settings = ({ onStartGame }) => {
           min="3"
           max={gridSize}
           onChange={(e) => setMaxStreak(Number(e.target.value))}
+          className="numberSelector"
         />
       </label>
+
+      {errorMessage && <p className="errorMessage">{errorMessage}</p>} {/* Display error message */}
 
       <div>
         <label>
