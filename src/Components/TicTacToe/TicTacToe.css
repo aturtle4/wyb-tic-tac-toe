@@ -9,9 +9,8 @@
     grid-template-columns: 1fr auto; 
     gap: 20px; 
     align-items: start; 
+    z-index: 90;
 }
-
-
 
 .board {
     display: grid;
@@ -19,6 +18,7 @@
     width: 600px;
     height: 600px;
     margin-right: none;
+    z-index: 90;
 
 }
 body.dark-mode {
@@ -251,7 +251,7 @@ body.light-mode {
     background-color: #fff;
     border-radius: 50%;
     transition: transform 0.3s ease;
-    z-index: 200;
+    z-index: 90;
   }
   
   .player-toggle.right .toggle-slider {
