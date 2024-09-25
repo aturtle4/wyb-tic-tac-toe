@@ -24,6 +24,7 @@ const TicTacToe = ({ gridSize = 3, maxStreak = 3, player1, player2, isDarkMode, 
   useEffect(() => {
     resetGame();
   }, [resetSignal]);
+  
 
   const handleClick = (row, col) => {
     if (board[row][col] || winner) return;

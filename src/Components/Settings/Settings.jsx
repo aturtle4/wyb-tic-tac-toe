@@ -1,46 +1,54 @@
 import React, { useState, useEffect } from 'react';
-import './Settings.css';
+import './Settings.css'; // Make sure this CSS file is in the same directory
 
 const Settings = ({ onStartGame }) => {
-  const [gridSize, setGridSize] = useState(3);
-  const [maxStreak, setMaxStreak] = useState(3);
-  const [player1, setPlayer1] = useState('Player_1');
-  const [player2, setPlayer2] = useState('Player_2');
+  const [settings, setSettings] = useState({
+    gridSize: 3,
+    maxStreak: 3,
+    player1: 'Player 1',
+    player2: 'Player 2',
+  });
   const [isMounted, setIsMounted] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(''); // State for error messages
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
-    // Trigger the animation when the component mounts
     setIsMounted(true);
+    return () => setIsMounted(false);
   }, []);
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setSettings(prev => {
+      const newSettings = { ...prev, [name]: value };
+      if (name === 'gridSize') {
+        newSettings.maxStreak = Math.min(newSettings.maxStreak, Number(value));
+      }
+      return newSettings;
+    });
+  };
+
   const handleStartGame = () => {
-    // Validation: Check if maxStreak is valid
-    if (maxStreak < 3 || maxStreak > gridSize) {
-      setErrorMessage(`Win Streak must be between 3 and ${gridSize}.`);
-      return; // Prevent starting the game
+    if (settings.maxStreak < 3 || settings.maxStreak > settings.gridSize) {
+      setErrorMessage(`Win Streak must be between 3 and ${settings.gridSize}.`);
+      return;
     }
-    setErrorMessage(''); // Clear error message if validation passes
-    onStartGame({ gridSize, maxStreak, player1, player2 });
+    setErrorMessage('');
+    onStartGame(settings);
   };
 
   return (
     <div className={`settingsBox ${isMounted ? 'show' : 'hide'}`}>
       <p className='settingTitle'>Menu</p>
+     
       <label>
         Grid Size:
         <select
-          value={gridSize}
-          onChange={(e) => {
-            setGridSize(Number(e.target.value));
-            // Reset maxStreak if it exceeds new gridSize
-            if (maxStreak > Number(e.target.value)) {
-              setMaxStreak(Number(e.target.value));
-            }
-          }}
+          name="gridSize"
+          value={settings.gridSize}
+          onChange={handleChange}
         >
-          {Array.from({ length: 8 }, (_, i) => 3 + i).map((n) => (
-            <option key={n} value={n}>{n}x{n}</option>
+          {Array.from({ length: 8 }, (_, i) => i + 3).map((size) => (
+            <option key={size} value={size}>{size}x{size}</option>
           ))}
         </select>
       </label>
@@ -49,36 +57,37 @@ const Settings = ({ onStartGame }) => {
         Win Streak:
         <input
           type="number"
-          value={maxStreak}
+          name="maxStreak"
+          value={settings.maxStreak}
+          onChange={handleChange}
           min="3"
-          max={gridSize}
-          onChange={(e) => setMaxStreak(Number(e.target.value))}
+          max={settings.gridSize}
           className="numberSelector"
         />
       </label>
 
-      {errorMessage && <p className="errorMessage">{errorMessage}</p>} {/* Display error message */}
+      {errorMessage && <p className="errorMessage">{errorMessage}</p>}
 
-      <div>
-        <label>
-          Player 1 [X]:
-          <input
-            type="text"
-            value={player1}
-            onChange={(e) => setPlayer1(e.target.value)}
-          />
-        </label>
-      </div>
-      <div>
-        <label>
-          Player 2 [O]:
-          <input
-            type="text"
-            value={player2}
-            onChange={(e) => setPlayer2(e.target.value)}
-          />
-        </label>
-      </div>
+      <label>
+        Player 1 [X]:
+        <input
+          type="text"
+          name="player1"
+          value={settings.player1}
+          onChange={handleChange}
+        />
+      </label>
+
+      <label>
+        Player 2 [O]:
+        <input
+          type="text"
+          name="player2"
+          value={settings.player2}
+          onChange={handleChange}
+        />
+      </label>
+
       <button className="startGameButton" onClick={handleStartGame}>
         Start Game
       </button>

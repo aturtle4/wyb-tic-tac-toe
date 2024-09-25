@@ -1,40 +1,59 @@
 .settingsBox {
     position: absolute;
-    bottom: 0; /* Position it at the bottom */
+    bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    padding: 30px;
-    background-color: #444444;
+    padding: 40px 30px; /* Increased top padding */
+    background-color: #3c3c3c;
     border-radius: 20px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Slightly darker shadow */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
     width: 360px;
     max-width: 90vw;
     text-align: center;
     z-index: 200;
     font-family: 'Jersey25-Regular', sans-serif;
     color: #ffffff;
-    visibility: hidden; /* Initially hidden */
-    opacity: 0; /* Initially transparent */
-    transition: all 0.5s ease; /* Faster transition */
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.5s ease;
 }
 
+body.light-mode .settingsBox {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 40px 30px; 
+    background-color: #b4b4b4;
+    border-radius: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    width: 360px;
+    max-width: 90vw;
+    text-align: center;
+    z-index: 200;
+    font-family: 'Jersey25-Regular', sans-serif;
+    color: #3c3c3c;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.5s ease;
+}
 .settingsBox.show {
-    visibility: visible; /* Make it visible */
-    opacity: 1; /* Make it opaque */
-    transform: translate(-50%, -30%); /* Slide up to the center */
+    visibility: visible;
+    opacity: 1;
+    transform: translate(-50%, -30px); /* Adjusted to show more of the box */
 }
 
 .settingsBox.hide {
-    visibility: hidden; /* Make it hidden */
-    opacity: 0; /* Make it transparent */
-    transform: translate(-50%, 200%); /* Slide down out of view */
+    visibility: hidden;
+    opacity: 0;
+    transform: translate(-50%, 200%);
 }
 
 .settingTitle {
-    font-size: 2.2rem; /* Slightly larger */
-    margin-bottom: 20px;
+    font-size: 2.4rem; /* Slightly larger */
+    margin-bottom: 25px; /* Increased spacing */
     font-weight: bold;
-    color: #ff5722; /* Change title color to match the theme */
+    color: #ff5722;
 }
 
 .settingsBox label {
@@ -48,65 +67,93 @@
 .settingsBox input,
 .settingsBox select {
     width: 100%;
-    padding: 10px 15px;
-    margin-top: 5px;
+    padding: 12px 15px; /* Slightly increased padding */
+    margin-top: 8px; /* Increased spacing */
     border-radius: 10px;
     border: 1px solid #d9d9d9;
     font-size: 1.5rem;
     box-sizing: border-box;
     background-color: #f0f0f0;
     color: #333333;
-    transition: border-color 0.3s ease, background-color 0.3s ease; /* Added background color transition */
+    transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
 .settingsBox input:focus,
 .settingsBox select:focus {
     outline: none;
-    border-color: #ff5722; /* Change border color on focus */
-    background-color: #ffffff; /* Lighten background on focus */
+    border-color: #ff5722;
+    background-color: #ffffff;
 }
 
 .settingsBox input:hover,
 .settingsBox select:hover {
-    border-color: #ff7043; /* Change border color on hover */
+    border-color: #ff7043;
 }
 
-.settingsBox input[type="text"] {
+.settingsBox input[type="text"],
+.settingsBox input[type="number"] {
     background-color: #f0f0f0;
     border: 1px solid #d9d9d9;
-    padding: 10px;
+    padding: 12px; /* Consistent with other inputs */
     font-size: 1.5rem;
     border-radius: 10px;
-    margin-top: 5px;
+    margin-top: 8px; /* Consistent with other inputs */
 }
 
 .startGameButton {
     background-color: #ff7043;
     color: white;
-    padding: 10px 20px;
-    font-size: 1.5rem;
+    padding: 12px 24px; /* Slightly increased padding */
+    font-size: 1.6rem; /* Slightly larger font */
     border: none;
     border-radius: 15px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
     font-family: 'Jersey25-Regular', sans-serif;
-    margin-top: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Added shadow to button */
+    margin-top: 30px; /* Increased spacing */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    width: 100%; /* Make button full width */
 }
 
 .startGameButton:hover {
-    background-color: #ff5722; /* Darker on hover */
+    background-color: #ff5722;
     transform: scale(1.05);
 }
 
 .startGameButton:active {
-    transform: scale(0.95); /* Slightly reduce size on active */
+    transform: scale(0.95);
 }
+
+.errorMessage {
+    color: #ff5722;
+    font-size: 1.2rem;
+    margin: 10px 0;
+    font-weight: bold;
+}
+
 
 @media (max-width: 768px) {
     .settingsBox {
-        padding: 20px;
+        padding: 30px 20px;
         width: 80vw;
+    }
+
+    .settingTitle {
+        font-size: 2rem;
+    }
+
+    .settingsBox label,
+    .settingsBox input,
+    .settingsBox select,
+    .startGameButton {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .settingsBox {
+        width: 90vw;
+        padding: 25px 15px;
     }
 
     .settingTitle {
@@ -117,82 +164,69 @@
     .settingsBox input,
     .settingsBox select,
     .startGameButton {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
     }
 }
 
-@media (max-width: 480px) {
-    .settingsBox {
-        width: 90vw;
-    }
-
-    .settingTitle {
-        font-size: 1.6rem;
-    }
-
-    .settingsBox label,
-    .settingsBox input,
-    .settingsBox select,
-    .startGameButton {
-        font-size: 1.1rem;
-    }
+body.light-mode .settingsBox.show {
+    visibility: visible;
+    opacity: 1;
+    transform: translate(-50%, -30px); /* Adjusted to show more of the box */
 }
 
-/* Range slider styles */
-input[type="range"] {
-    width: 100%;
-    margin: 10px 0;
-    -webkit-appearance: none; /* Remove default appearance in Safari */
-    background: transparent; /* Remove default background */
+body.light-mode .settingsBox.hide {
+    visibility: hidden;
+    opacity: 0;
+    transform: translate(-50%, 200%);
 }
 
-/* For webkit browsers (Chrome, Safari) */
-input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 20px; /* Thumb width */
-    height: 20px; /* Thumb height */
-    background: #ff5722; /* Thumb color */
-    cursor: pointer;
-}
-
-input[type="range"]::-webkit-slider-runnable-track {
-    width: 100%;
-    height: 5px; /* Track height */
-    background: #ddd; /* Track color */
-}
-
-/* For Firefox */
-input[type="range"]::-moz-range-thumb {
-    width: 20px; /* Thumb width */
-    height: 20px; /* Thumb height */
-    background: #ff5722; /* Thumb color */
-    cursor: pointer;
-}
-
-input[type="range"]::-moz-range-track {
-    width: 100%;
-    height: 5px; /* Track height */
-    background: #ddd; /* Track color */
-}
-
-/* For Edge */
-input[type="range"]::-ms-thumb {
-    width: 20px; /* Thumb width */
-    height: 20px; /* Thumb height */
-    background: #ff5722; /* Thumb color */
-    cursor: pointer;
-}
-
-input[type="range"]::-ms-track {
-    width: 100%;
-    height: 5px; /* Track height */
-    background: #ddd; /* Track color */
-}
-
-.errorMessage {
-    color: #ff5722; /* Red color for error message */
-    font-size: 1.2rem;
-    margin: 10px 0;
+body.light-mode .settingTitle {
+    font-size: 2.4rem; /* Slightly larger */
+    margin-bottom: 25px; /* Increased spacing */
     font-weight: bold;
+    color: #ff5722;
+}
+
+body.light-mode .settingsBox label {
+    display: block;
+    margin: 20px 0 10px;
+    color: #d9d9d9;
+    font-size: 1.5rem;
+    text-align: left;
+}
+
+body.light-mode .settingsBox input,
+.settingsBox select {
+    width: 100%;
+    padding: 12px 15px; /* Slightly increased padding */
+    margin-top: 8px; /* Increased spacing */
+    border-radius: 10px;
+    border: 1px solid #d9d9d9;
+    font-size: 1.5rem;
+    box-sizing: border-box;
+    background-color: #f0f0f0;
+    color: #333333;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+body.light-mode .settingsBox input:focus,
+.settingsBox select:focus {
+    outline: none;
+    border-color: #ff5722;
+    background-color: #ffffff;
+}
+
+body.light-mode.settingsBox input:hover,
+.settingsBox select:hover {
+    border-color: #ff7043;
+}
+
+body.light-mode .settingsBox input[type="text"],
+.settingsBox input[type="number"] {
+    background-color: #f0f0f0;
+    border: 1px solid #d9d9d9;
+    padding: 12px; /* Consistent with other inputs */
+    font-size: 1.5rem;
+    border-radius: 10px;
+    margin-top: 8px; /* Consistent with other inputs */
 }

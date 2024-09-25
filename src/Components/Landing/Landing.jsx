@@ -49,7 +49,14 @@ const Landing = () => {
     
   };
 
-  const handleClick = () => {
+  const handleClick = (e) => {
+    if (
+      e.target.closest('.themeToggle') 
+    ) {
+      toggleDarkMode(); 
+      return; 
+    }
+
     if (!isClicked) {
       setIsClicked(true);
       setShowSettings(true);
@@ -59,15 +66,14 @@ const Landing = () => {
 
   const toggleMenu = () => {
     setIsMenuActive(!isMenuActive);
-    setShowSettings(!isMenuActive); // Show or hide the settings when the menu is toggled
+    setShowSettings(!isMenuActive); 
   };
 
   const startGame = (settings) => {
     setGameSettings(settings);
     setShowSettings(false);
     setGameStarted(true);
-    setIsMenuActive(false); // Close menu when the game starts
-    setResetSignal(prev => prev + 1); // Trigger reset signal
+    setResetSignal(prev => prev + 1); 
   };
 
   return (
@@ -83,6 +89,8 @@ const Landing = () => {
           <div className="horizontalLine horizontal2"></div>
         </div>
       )}
+
+      
 
       <div
         className={`xLogo bounce ${isClicked ? 'move-x' : ''}`}
@@ -160,6 +168,7 @@ const Landing = () => {
           TOE<span style={{ color: isDarkMode ? '#ff7043' : '#ff5722' }}>.</span>
         </h1>
       </div>
+      
 
       {showSettings && <Settings onStartGame={startGame} />}
 
@@ -170,7 +179,7 @@ const Landing = () => {
           player1={gameSettings.player1}
           player2={gameSettings.player2}
           isDarkMode={isDarkMode}
-          resetSignal={resetSignal} // Pass reset signal to TicTacToe
+          resetSignal={resetSignal} 
         />
       )}
     </div>
