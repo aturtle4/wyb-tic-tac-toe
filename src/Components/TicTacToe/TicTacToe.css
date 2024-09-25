@@ -21,6 +21,19 @@
     z-index: 90;
 
 }
+@media (max-width: 768px) {
+    .board{
+        width: 400px;
+        height: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+    .board {
+        width: 300px;
+        height: 300px; 
+    }
+}
 body.dark-mode {
     background-color: #353535;
 }
@@ -284,12 +297,63 @@ body.light-mode {
   body.light-mode .player-name {
     color: #353535;
   }
-
-  
   
   body.light-mode .player-name.active {
     color: #ff5722;
   }
+
+  @media (max-width: 768px) {
+    .player-toggle {
+        width: 90px; /* Adjust width for medium screens */
+        height: 40px; /* Adjust height for medium screens */
+    }
+
+    .player-icon-x {
+        width: 50px; /* Adjust width for medium screens */
+        height: 50px; /* Adjust height for medium screens */
+    }
+
+    .player-icon-o {
+        width: 30px; /* Adjust width for medium screens */
+        height: 30px; /* Adjust height for medium screens */
+    }
+
+    .toggle-slider {
+        width: 45px; /* Adjust width for medium screens */
+        height: 45px; /* Adjust height for medium screens */
+        top : -2px;
+    }
+
+    .player-name {
+        font-size: 2.5vw; /* Adjust font size for medium screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .player-toggle {
+        width: 80px; /* Adjust width for small screens */
+        height: 30px; /* Adjust height for small screens */
+    }
+
+    .player-icon-x {
+        width: 40px; /* Adjust width for small screens */
+        height: 40px; /* Adjust height for small screens */
+    }
+
+    .player-icon-o {
+        width: 30px; /* Adjust width for small screens */
+        height: 30px; /* Adjust height for small screens */
+    }
+
+    .toggle-slider {
+        width: 40px; /* Adjust width for small screens */
+        height: 40px; /* Adjust height for small screens */
+    }
+
+    .player-name {
+        font-size: 3.5vw; /* Adjust font size for small screens */
+    }
+}
 
   .reset-icon {
     cursor: pointer; 
